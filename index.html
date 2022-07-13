@@ -104,6 +104,121 @@
         the configuration file is **not** in the root folder, paths are
         **still** relative to the root folder!
       </p>
+      <p>
+        The callback value is an object. Inside of the callback value is a
+        functionParameter value and a functionBody value. The functionParameter
+        is the variable that gets passed on error. The functionBody is the body
+        of your callback function.
+      </p>
+      <p>
+        The functionParameter's variable will not exist if there is no error,
+        you can use this to create an error message on error and a sucess
+        message on completion.
+      </p>
+      <br />
+      <h2>📁 In-Depth Usage Example</h2>
+      <p><b>Installation:</b> <code>./</code></p>
+      <pre><code>> npm install webcompounder --save-dev</code></pre>
+      <br />
+      <p>Input File: <code>./src/utils/colors.js</code></p>
+      <p>
+        <b
+          >This file's code does not matter, its just an example of a file that
+          will be combined.</b
+        >
+      </p>
+      <pre><code>var colors = {
+  red: "#ff0000",
+  orange: "#ff5500",
+  yellow: "#ffff00",
+  green: "#00ff00",
+  blue: "#0000ff",
+  purple: "#ff00ff",
+  white: "#ffffff",
+  gray: "#555555",
+  black: "#000000"
+};</code></pre>
+      <br />
+      <p>Input File: <code>./src/utils/utils.js</code></p>
+      <p>
+        <b
+          >This file's code does not matter, its just an example of a file that
+          will be combined.</b
+        >
+      </p>
+      <pre><code>var utils = {
+  colors: colors,
+};</code></pre>
+      <br />
+      <p>Input File: <code>./src/main.js</code></p>
+      <p>
+        <b
+          >This file's code does not matter, its just an example of a file that
+          will be combined.</b
+        >
+      </p>
+      <pre><code>var someLibrary = {
+  utils: utils,
+};</code></pre>
+      <br />
+      <p><b>Configuration File:</b> <code>./build/config/buildJs.json</code></p>
+      <pre><code>{
+  "input": ["./src/utils/colors.js", "./src/utils/utils.js", "./src/main.js"],
+  "output": "./build/main.build.js",
+  "callback": {
+    "functionParameter": "error",
+    "functionBody": "if (error) { console.error('\n' + error + '\n') } else { console.log('\n' + 'Build Completed' + '\n') }"
+  }
+}</code></pre>
+      <p>
+        <b
+          >Notice how even though the configuration file is in
+          <code>./build/config/</code>, the paths are relative to
+          <code>./</code>. This is because <code>./</code> is where
+          webCompounder was installed into.</b
+        >
+      </p>
+      <br />
+      <p><b>Terminal/Shell:</b> <code>./</code></p>
+      <pre><code>> webCompounder --version
+1.1.2
+> webCompounder ./build/config/buildJs.json
+Build Completed</code></pre>
+      <p>
+        <b
+          >You can run <code>webCompounder --version</code> to check the version
+          of webCompounder that's installed. This also helps test if
+          webCompounder is working.</b
+        >
+      </p>
+      <br />
+      <p>Output File: <code>./build/main.build.js</code></p>
+      <p>
+        <b
+          >This file's code does not matter, its just an example of a file that
+          was generated.</b
+        >
+      </p>
+      <pre><code>var colors = {
+  red: "#ff0000",
+  orange: "#ff5500",
+  yellow: "#ffff00",
+  green: "#00ff00",
+  blue: "#0000ff",
+  purple: "#ff00ff",
+  white: "#ffffff",
+  gray: "#555555",
+  black: "#000000",
+};
+
+var utils = {
+  colors: colors,
+};
+
+var someLibrary = {
+  utils: utils,
+};</code></pre>
+      <br />
     </main>
 
     <footer>
