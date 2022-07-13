@@ -9,6 +9,8 @@
   </head>
   <body>
     <header>
+      <br />
+      <br />
       <h1>webCompounder</h1>
       <p>
         A tool to compound/combine/concatenate files;<br />made to simplify web
@@ -57,12 +59,16 @@
       <pre><code>> webCompounder ./pathTo/configFile.json</code></pre>
       <br />
       <h2>📋 Configuration Files</h2>
-      <p>Configuration files are JSON files with an input value, an output value, and an optional callback value.
-      </p>
-      <p>The configuration file can have any filename and can be in any folder, but must be a json file and can <b>not</b> be outside of the root folder.</p>
       <p>
-        Here's an example:
+        Configuration files are JSON files with an input value, an output value,
+        and an optional callback value.
       </p>
+      <p>
+        The configuration file can have any filename and can be in any folder,
+        but must be a json file and can <b>not</b> be outside of the root
+        folder.
+      </p>
+      <p>Here's an example:</p>
       <pre><code>{
         "input": [
           "./pathTo/file.extension",
@@ -75,9 +81,7 @@
           "functionBody": "if (variablePassedOnError) { /* do something on error*/ } else { /* do something when complete & no error */}"
         }
       }</code></pre>
-      <p>
-        Here's another, more <i>real-world</i> example:
-      </p>
+      <p>Here's another, more <i>real-world</i> example:</p>
       <pre><code>{
         "input": ["./src/utils/colors.js", "./src/utils/utils.js", "./src/main.js"],
         "output": "./build/main.build.js",
@@ -86,9 +90,20 @@
           "functionBody": "if (error) { console.error('\n' + error + '\n') } else { console.log('\n' + 'Build Completed' + '\n') }"
         }
       }</code></pre>
-      <p>The input value is an array, and each string in the array is a file path to the files you want to merge together.</p>
-      <p>The output value is a single string, and is a file path pointing to the file that all the other files will combine into.</p>
-      <p>_All_ the file paths are relative to the **root** folder, where `package.json` is and where your terminal/shell session is, _even_ if the configuration file is **not** in the root folder, paths are **still** relative to the root folder!</p>
+      <p>
+        The input value is an array, and each string in the array is a file path
+        to the files you want to merge together.
+      </p>
+      <p>
+        The output value is a single string, and is a file path pointing to the
+        file that all the other files will combine into.
+      </p>
+      <p>
+        _All_ the file paths are relative to the **root** folder, where
+        `package.json` is and where your terminal/shell session is, _even_ if
+        the configuration file is **not** in the root folder, paths are
+        **still** relative to the root folder!
+      </p>
     </main>
 
     <footer>
@@ -101,6 +116,8 @@
           >See License File</a
         >
       </p>
+      <br />
+      <br />
     </footer>
   </body>
 </html>
