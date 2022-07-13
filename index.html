@@ -25,9 +25,71 @@
       </nav>
     </header>
 
-  <main>
-    <p>This is my new website and it's using Simple.css. It's really cool. If you want to use it too, you can <a href="https://simplecss.org">visit their site</a>.</p>
-  </main>
+    <main>
+      <h2>📦 Installation</h2>
+      <p>You can install webCompounder from npm, like any other npm package.</p>
+      <pre><code>> npm install webcompounder --save-dev</code></pre>
+      <p>
+        You should <i>probably</i> install it as a developer dependency, using
+        the <code>--save-dev</code> flag. (Unless you have a reason not to, of
+        course.)
+      </p>
+      <p>
+        Unlike some npm packages, webCompounder does <b>not</b> need to be
+        installed globally to work. (It will only work within the folder it's
+        installed into, though. But in most cases thats all you need.)
+      </p>
+      <br />
+      <h2>🔧 Command-Line Usage</h2>
+      <p>
+        webCompounder doesn't use a lot of flags or command line arguements,
+        instead you set the options in a configuration file.
+      </p>
+      <p>
+        If you have different workflows with different options, you can have
+        multiple configuration files, and can run configuration file one at a
+        time.
+      </p>
+      <p>
+        Then you put the path to the configuration file as an arguement in the
+        command.
+      </p>
+      <pre><code>> webCompounder ./pathTo/configFile.json</code></pre>
+      <br />
+      <h2>📋 Configuration Files</h2>
+      <p>Configuration files are JSON files with an input value, an output value, and an optional callback value.
+      </p>
+      <p>The configuration file can have any filename and can be in any folder, but must be a json file and can <b>not</b> be outside of the root folder.</p>
+      <p>
+        Here's an example:
+      </p>
+      <pre><code>{
+        "input": [
+          "./pathTo/file.extension",
+          "./pathTo/anotherFile.extension",
+          "./yetAnother.extension"
+        ],
+        "output": "./pathToOutputFile/outputFile.extension",
+        "callback": {
+          "functionParameter": "variablePassedOnError",
+          "functionBody": "if (variablePassedOnError) { /* do something on error*/ } else { /* do something when complete & no error */}"
+        }
+      }</code></pre>
+      <p>
+        Here's another, more <i>real-world</i> example:
+      </p>
+      <pre><code>{
+        "input": ["./src/utils/colors.js", "./src/utils/utils.js", "./src/main.js"],
+        "output": "./build/main.build.js",
+        "callback": {
+          "functionParameter": "error",
+          "functionBody": "if (error) { console.error('\n' + error + '\n') } else { console.log('\n' + 'Build Completed' + '\n') }"
+        }
+      }</code></pre>
+      <p>The input value is an array, and each string in the array is a file path to the files you want to merge together.</p>
+      <p>The output value is a single string, and is a file path pointing to the file that all the other files will combine into.</p>
+      <p>_All_ the file paths are relative to the **root** folder, where `package.json` is and where your terminal/shell session is, _even_ if the configuration file is **not** in the root folder, paths are **still** relative to the root folder!</p>
+    </main>
 
     <footer>
       <h1>webCompounder</h1>
