@@ -23,7 +23,11 @@
     <header>
       <br />
       <br />
-      <p align="center"><a href="https://webcompounder.ehan.dev/"><img width="200" height="200" src="./assets/img/icon.png"></a></p>
+      <p align="center">
+        <a href="https://webcompounder.ehan.dev/"
+          ><img width="200" height="200" src="./assets/img/icon.png"
+        /></a>
+      </p>
       <h1>webCompounder</h1>
       <p>A tool to bundle files;<br />and simplify web development.</p>
       <nav>
@@ -70,8 +74,8 @@
       <br />
       <h2>📋 Configuration Files</h2>
       <p>
-        Configuration files are JSON files with an input value, an output value,
-        and an optional callback value.
+        Configuration files are JSON files with a workflow value, an input
+        value, and an output value.
       </p>
       <p>
         The configuration file can have any filename and can be in any folder,
@@ -80,25 +84,20 @@
       </p>
       <p>Here's an example:</p>
       <pre><code>{
+  "workflow": "bundle",
   "input": [
     "./pathTo/file.extension",
-    "./pathTo/anotherFile.extension",
+    "./pathTo/aFolder/",
+    "./globsAre/**/alsoSupported/*.cool"
     "./yetAnother.extension"
   ],
-  "output": "./pathToOutputFile/outputFile.extension",
-  "callback": {
-    "functionParameter": "variablePassedOnError",
-    "functionBody": "if (variablePassedOnError) { /* do something on error*/ } else { /* do something when complete & no error */}"
-  }
+  "output": "./pathToOutputFile/outputFile.extension"
 }</code></pre>
       <p>Here's another, more <i>real-world</i> example:</p>
       <pre><code>{
+  "workflow": "bundle",
   "input": ["./src/utils/colors.js", "./src/utils/utils.js", "./src/main.js"],
-  "output": "./build/main.build.js",
-  "callback": {
-    "functionParameter": "error",
-    "functionBody": "if (error) { console.error('\n' + error + '\n') } else { console.log('\n' + 'Build Completed' + '\n') }"
-  }
+  "output": "./build/main.build.js"
 }</code></pre>
       <p>
         The input value is an array, and each string in the array is a file path
@@ -110,20 +109,9 @@
       </p>
       <p>
         <i>All</i> the file paths are relative to the <b>root</b> folder, where
-        <code>package.json</code> is and where your terminal/shell session is, <i>even</i> if
-        the configuration file is <b>not</b> in the root folder, paths are
-        <b>still</b> relative to the root folder!
-      </p>
-      <p>
-        The callback value is an object. Inside of the callback value is a
-        functionParameter value and a functionBody value. The functionParameter
-        is the variable that gets passed on error. The functionBody is the body
-        of your callback function.
-      </p>
-      <p>
-        The functionParameter's variable will not exist if there is no error,
-        you can use this to create an error message on error and a sucess
-        message on completion.
+        <code>package.json</code> is and where your terminal/shell session is,
+        <i>even</i> if the configuration file is <b>not</b> in the root folder,
+        paths are <b>still</b> relative to the root folder!
       </p>
       <br />
       <h2>📁 In-Depth Usage Example</h2>
@@ -173,12 +161,9 @@
       <br />
       <p><b>Configuration File:</b> <code>./build/config/buildJs.json</code></p>
       <pre><code>{
+  "workflow": "bundle",
   "input": ["./src/utils/colors.js", "./src/utils/utils.js", "./src/main.js"],
-  "output": "./build/main.build.js",
-  "callback": {
-    "functionParameter": "error",
-    "functionBody": "if (error) { console.error('\n' + error + '\n') } else { console.log('\n' + 'Build Completed' + '\n') }"
-  }
+  "output": "./build/main.build.js"
 }</code></pre>
       <p>
         <b
@@ -190,15 +175,20 @@
       </p>
       <br />
       <p><b>Terminal/Shell:</b> <code>./</code></p>
-      <pre><code>> webCompounder --version
-1.1.4
+      <pre><code>> webCompounder --v
+v1.1.5
 > webCompounder ./build/config/buildJs.json
-Build Completed</code></pre>
+Sucessfully loaded config file!
+
+Sucessfully bundled files!
+Process Complete!
+</code></pre>
       <p>
         <b
-          >You can run <code>webCompounder --version</code> to check the version
-          of webCompounder that's installed. This also helps test if
-          webCompounder is working.</b
+          >You can run <code>webCompounder --v</code> or
+          <code>webCompounder --version</code> to check the version of
+          webCompounder that's installed. This also helps test if webCompounder
+          is working.</b
         >
       </p>
       <br />
